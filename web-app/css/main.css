@@ -603,3 +603,25 @@ a.skip {
 .entry-date {
   color: #999;
 }
+
+#header {
+  background: #67c;
+  padding: 2em 1em 2em 1em;
+  margin-bottom: 1em;
+}
+
+a.header-main:link, a.header-main:visited {
+  color: #fff;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.header-sub {
+  color: #fff;
+  font-size: 1.25em;
+  font-style: italic;
+}
+
+.paginateButtons{
+  clear: left;
+}
