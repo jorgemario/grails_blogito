@@ -9,6 +9,10 @@ class Entry {
 		lastUpdated()
     }
 	
+	static mapping = {
+		sort(lastUpdated:"desc")
+	}
+	
 	String title
 	String summary
 	Date dateCreated
