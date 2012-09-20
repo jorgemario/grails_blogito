@@ -21,45 +21,7 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list entry">
-			
-				<g:if test="${entryInstance?.title}">
-				<li class="fieldcontain">
-					<span id="title-label" class="property-label"><g:message code="entry.title.label" default="Title" /></span>
-					
-						<span class="property-value" aria-labelledby="title-label"><g:fieldValue bean="${entryInstance}" field="title"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${entryInstance?.summary}">
-				<li class="fieldcontain">
-					<span id="summary-label" class="property-label"><g:message code="entry.summary.label" default="Summary" /></span>
-					
-						<span class="property-value" aria-labelledby="summary-label"><g:fieldValue bean="${entryInstance}" field="summary"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${entryInstance?.dateCreated}">
-				<li class="fieldcontain">
-					<span id="dateCreated-label" class="property-label"><g:message code="entry.dateCreated.label" default="Date Created" /></span>
-					
-						<span class="property-value" aria-labelledby="dateCreated-label"><g:formatDate date="${entryInstance?.dateCreated}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${entryInstance?.lastUpdated}">
-				<li class="fieldcontain">
-					<span id="lastUpdated-label" class="property-label"><g:message code="entry.lastUpdated.label" default="Last Updated" /></span>
-					
-						<span class="property-value" aria-labelledby="lastUpdated-label"><g:formatDate date="${entryInstance?.lastUpdated}" /></span>
-					
-				</li>
-				</g:if>
-			
-			</ol>
+			<g:render template="entry" bean="${ entryInstance }" var="entryInstance"/>
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${entryInstance?.id}" />

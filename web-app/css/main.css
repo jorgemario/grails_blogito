@@ -594,3 +594,12 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+
+/* Blogito customizations */
+.entry {
+  padding-bottom: 2em;
+}
+
+.entry-date {
+  color: #999;
+}
