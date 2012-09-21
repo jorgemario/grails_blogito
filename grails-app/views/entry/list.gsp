@@ -26,7 +26,7 @@
 		</div>
 		
 		<div class="pagination">
-			<g:paginate total="${entryInstanceTotal}" />
+			<g:paginate total="${entryCount}" params="${ flash }"/>
 		</div>
 	</body>
 </html>

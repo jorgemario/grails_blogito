@@ -8,7 +8,8 @@ class UrlMappings {
 		}
 
 		//"/"(view:"/index")
-		"/"(controller:"entry")
 		"500"(view:'/error')
+		"/"(controller:"entry")
+		"/blog/$id"(controller:"entry", action="list")
 	}
 }

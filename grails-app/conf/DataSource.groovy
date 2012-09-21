@@ -20,7 +20,7 @@ environments {
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:postgresql://localhost/test"
+            url = "jdbc:postgresql://localhost/dev"
         }
     }
     production {
