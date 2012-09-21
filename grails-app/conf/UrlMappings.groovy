@@ -10,6 +10,7 @@ class UrlMappings {
 		//"/"(view:"/index")
 		"500"(view:'/error')
 		"/"(controller:"entry")
-		"/blog/$id"(controller:"entry", action="list")
+		'/entry/$action?/$id?/$title?' (controller: 'entry')
+		"/blog/$id/$title?" (controller:"entry", action="list")
 	}
 }

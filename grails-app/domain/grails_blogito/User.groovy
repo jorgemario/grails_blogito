@@ -7,9 +7,9 @@ class User {
 	}
 
     static constraints = {
-		login(unique: true)
+		login(blank: false, unique: true)
 		password(password: true)
-		name()
+		name(blank: false)
     }
 	
 	static hasMany = [entries: Entry]
