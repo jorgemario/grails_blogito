@@ -3,11 +3,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+			<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'entry.label', default: 'Entry')}" />
 		<title>Blogito</title>
 	</head>
 	<body>
+		<g:if test="${flash.message}">
+				<g:message code="${flash.message}" args="${flash.args}"
+						   default="${flash.default}"/>
+		</g:if>
 		<a href="#list-entry" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<g:if test="${session.user}">
 			<div class="nav" role="navigation">
@@ -24,7 +28,7 @@
 				</g:each>
 			</div>
 		</div>
-		
+
 		<div class="pagination">
 			<g:paginate total="${entryCount}" params="${ flash }"/>
 		</div>

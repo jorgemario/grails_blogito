@@ -2,7 +2,16 @@ package grails_blogito
 
 class EntryController {
 	def scaffold = Entry
+
+	def beforeInterceptor = [auction: this.&auth, except:['list','index','show']]
 	
+	def auth() {
+		if (!session.user) {
+			redirect(controller: 'user', action: 'login')
+			return false
+		}	
+	}
+
 	def list = {
 		if(!params.max) params.max = 10
 		flash.id = params.id
