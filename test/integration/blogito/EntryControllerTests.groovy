@@ -1,7 +1,5 @@
 package blogito
 
-
-
 import grails.test.mixin.*
 import grails_blogito.Entry;
 import grails_blogito.EntryController;
@@ -15,6 +13,14 @@ import org.junit.*
 @TestFor(EntryController)
 @Mock([Entry, User])
 class EntryControllerTests {
+
+	def sessionFactory
+
+	void setUp() {
+		sessionFactory.currentSession.flush()
+		sessionFactory.currentSession.clear()
+	}
+    
 
     void testListAuthorFound() {
 		def author = new User(login: "testuser", name: "The User", password: "p")
@@ -35,6 +41,32 @@ class EntryControllerTests {
 	void testListAuthorNotFound() {
 		def result = controller.list()
 		assert result.entryCount == 0
-//		assert view == "/entry/list"
+//		assert view == "/entry/listi${"
 	}
+
+	void testAuthCheck() {
+		def author = new User(login:'test', name:'the name', password:'sa')
+		def blog = new Entry(title:'title', summary:'summary')
+		blog.setId(1)
+		author.addToEntries(blog)
+		author.save()
+		params.id = 1
+		controller.edit()
+		assert flash.message != null
+		assert response.redirectUrl == '/entry/list'
+	}
+
+//	void testRedirectToListWhenNotOwnerEdition() {
+//		def author = new User(login:'test', name:'the name', password:'sa')
+//		def blog = new Entry(title:'title', summary:'summary')
+//		blog.setId(1)
+//		author.addToEntries(blog)
+//		author.save()
+//		params.id = 1
+//		def user = new User(login:'another', name:'another name', password:'sa')
+//		mockSession.user = user
+//		controller.edit()
+//		assert flash.message != null
+//		assert response.redirectUrl == '/entry/list'
+//	}
 }

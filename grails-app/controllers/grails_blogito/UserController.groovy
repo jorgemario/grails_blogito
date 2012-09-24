@@ -2,6 +2,17 @@ package grails_blogito
 
 class UserController {
 	def scaffold = User
+    
+    def beoreInterceptor = [action: this.&auth, except: ['login','authenticate','logout']]
+    
+    def auth() {
+        if (!session?.user?.role == 'admin') {
+            flash.default='You must be an Administrator to perform that action'
+            flash.message = 'user.must-be-admin'
+            redirect(action: 'login')
+            return false
+        }
+    }
 
 	def login = {}
 

@@ -7,7 +7,7 @@ class BootStrap {
     def init = { servletContext ->
 		switch(GrailsUtil.environment) {
 		case "development":
-			def jdoe = new User(login:"jdoe", password:"test", name: "John Doe")
+			def jdoe = new User(login:"jdoe", password:"test", name: "John Doe", role: 'author')
 			def e1 = new Entry(title: "The power of parenthesis", 
 				summary: "Parentheses make it unambiguous for the expander to understand what the arguments to a macro are")
 			def e2 = new Entry(title: "Grails 2.1.1 is now available", 
@@ -16,7 +16,7 @@ class BootStrap {
 			jdoe.addToEntries(e2)
 			jdoe.save()
 			
-			def jorge = new User(login: "jorge", password: "test", name: "Jorge Mario")
+			def jorge = new User(login: "jorge", password: "test", name: "Jorge Mario", role: 'author')
 			def e3 = new Entry(title: "Netflix open source Asgard",
 				summary: "Netflix have just open-sourced their Grails-based cloud management platform called Asgard")
 			def e4 = new Entry(title: "Grails OAuth Plugin Released",
@@ -24,6 +24,9 @@ class BootStrap {
 			jorge.addToEntries(e3)
 			jorge.addToEntries(e4)
 			jorge.save()
+            
+            def admin = new User(login: 'admin', name: 'Administrator', password: 'test', role: 'admin')
+            admin.save()
 			break
 		}
     }

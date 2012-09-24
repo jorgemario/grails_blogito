@@ -3,7 +3,7 @@ package grails_blogito
 class EntryController {
 	def scaffold = Entry
 
-	def beforeInterceptor = [auction: this.&auth, except:['list','index','show']]
+	def beforeInterceptor = [action: this.&auth, except:['list','index','show']]
 	
 	def auth() {
 		if (!session.user) {
@@ -40,4 +40,21 @@ class EntryController {
 		
 		[ entryInstanceList:entryList, entryCount:entryCount ]
 	}
+
+	def edit = {
+		def entryInstance = Entry.get(params.id)
+		if (!entryInstance) {
+			flash.message = "entry.not-found"
+			flash.args =[params.id]
+			redirect(action:'list')
+		} else {
+			if (session.user.login != entryInstance.author.login) {
+				flash.message = 'entry.edit.invalid-owner'
+				redirect(action:'list')
+			}
+		}
+
+		[entryInstance: entryInstance]
+	}
+
 }
